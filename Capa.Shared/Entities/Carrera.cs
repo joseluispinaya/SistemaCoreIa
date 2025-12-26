@@ -10,8 +10,16 @@ namespace Capa.Shared.Entities
         [Required(ErrorMessage = "El campo Carrera es obligatorio.")]
         public string Nombre { get; set; } = null!;
 
-        public ICollection<Docente>? Docentes { get; set; }
+        public ICollection<Docente> Docentes { get; set; } = [];
+        public ICollection<Estudiante> Estudiantes { get; set; } = [];
 
-        public int DocentesCount => Docentes == null ? 0 : Docentes.Count;
+        //public ICollection<Docente>? Docentes { get; set; }
+
+        //public int DocentesCount => Docentes == null ? 0 : Docentes.Count;
+
+        //public ICollection<Estudiante>? Estudiantes { get; set; }
+
+        //public int EstudiantesCount => Estudiantes == null ? 0 : Estudiantes.Count;
+
     }
 }

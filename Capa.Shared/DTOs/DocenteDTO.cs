@@ -1,8 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Capa.Shared.Entities
+namespace Capa.Shared.DTOs
 {
-    public class Docente
+    public class DocenteDTO
     {
         public int Id { get; set; }
 
@@ -29,15 +34,7 @@ namespace Capa.Shared.Entities
         [Required(ErrorMessage = "El campo Resumen de Perfil es obligatorio.")]
         public string ResumenPerfil { get; set; } = null!;
 
-        public Carrera Carrera { get; set; } = null!;
-
         [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una Carrera.")]
         public int CarreraId { get; set; }
-
-        public ICollection<ProyectoGrado> Proyectos { get; set; } = [];
-
-        //public int ProyectosCount => Proyectos == null ? 0 : Proyectos.Count;
-
-        //public ICollection<ProyectoGrado>? Proyectos { get; set; }
     }
 }

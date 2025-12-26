@@ -2,7 +2,7 @@
 
 namespace Capa.Shared.Entities
 {
-    public class Docente
+    public class Estudiante
     {
         public int Id { get; set; }
 
@@ -19,25 +19,21 @@ namespace Capa.Shared.Entities
         [Required(ErrorMessage = "El campo Apellidos es obligatorio.")]
         public string Apellidos { get; set; } = null!;
 
-
         [MaxLength(50, ErrorMessage = "El campo Correo debe tener máximo 50 caracteres.")]
         [Required(ErrorMessage = "El campo Correo es obligatorio.")]
         [EmailAddress(ErrorMessage = "Debes ingresar un correo válido.")]
         public string Correo { get; set; } = null!;
 
 
-        [Required(ErrorMessage = "El campo Resumen de Perfil es obligatorio.")]
-        public string ResumenPerfil { get; set; } = null!;
+        [MaxLength(10, ErrorMessage = "El campo Codigo debe tener máximo 10 caracteres.")]
+        [Required(ErrorMessage = "El campo Codigo es obligatorio.")]
+        public string Codigo { get; set; } = null!;
 
         public Carrera Carrera { get; set; } = null!;
 
         [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una Carrera.")]
         public int CarreraId { get; set; }
 
-        public ICollection<ProyectoGrado> Proyectos { get; set; } = [];
-
-        //public int ProyectosCount => Proyectos == null ? 0 : Proyectos.Count;
-
-        //public ICollection<ProyectoGrado>? Proyectos { get; set; }
+        public ProyectoGrado? ProyectoGrado { get; set; }
     }
 }

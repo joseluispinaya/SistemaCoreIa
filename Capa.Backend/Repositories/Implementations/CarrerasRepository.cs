@@ -1,5 +1,6 @@
 ﻿using Capa.Backend.Data;
 using Capa.Backend.Repositories.Intefaces;
+using Capa.Shared.DTOs;
 using Capa.Shared.Entities;
 using Capa.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -49,8 +50,27 @@ namespace Capa.Backend.Repositories.Implementations
         {
             var carreras = await _context.Carreras
             .Include(x => x.Docentes)
+            .Include(x => x.Estudiantes)
             .ToListAsync();
             return new ActionResponse<IEnumerable<Carrera>>
+            {
+                WasSuccess = true,
+                Result = carreras
+            };
+        }
+
+        public async Task<ActionResponse<IEnumerable<CarreraResponseDTO>>> GetNewAsync()
+        {
+            var carreras = await _context.Carreras
+            .Select(c => new CarreraResponseDTO
+            {
+                Id = c.Id,
+                Nombre = c.Nombre,
+                CantidadDocentes = c.Docentes.Count,
+                CantidadEstudiantes = c.Estudiantes.Count
+            })
+            .ToListAsync();
+            return new ActionResponse<IEnumerable<CarreraResponseDTO>>
             {
                 WasSuccess = true,
                 Result = carreras

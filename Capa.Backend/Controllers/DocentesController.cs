@@ -1,24 +1,24 @@
 ﻿using Capa.Backend.Repositories.Intefaces;
-using Capa.Shared.Entities;
+using Capa.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capa.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CarrerasController : ControllerBase
+    public class DocentesController : ControllerBase
     {
-        private readonly ICarrerasRepository _carrerasRepository;
-        //private readonly ICarrerasRepository _carrerasRepository;
-        public CarrerasController(ICarrerasRepository carrerasRepository)
+        private readonly IDocentesRepository _docentesRepository;
+        //private readonly IDocentesRepository _docentesRepository;
+        public DocentesController(IDocentesRepository docentesRepository)
         {
-            _carrerasRepository = carrerasRepository;
+            _docentesRepository = docentesRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var action = await _carrerasRepository.GetNewAsync();
+            var action = await _docentesRepository.GetNewAsync();
             if (action.WasSuccess)
             {
                 return Ok(action.Result);
@@ -27,7 +27,7 @@ namespace Capa.Backend.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> PostAsync([FromBody] Carrera carrera)
+        public async Task<IActionResult> PostAsync([FromBody] DocenteDTO docenteDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace Capa.Backend.Controllers
                 return BadRequest(errors);
             }
 
-            var action = await _carrerasRepository.AddAsync(carrera);
+            var action = await _docentesRepository.AddAsync(docenteDTO);
             if (action.WasSuccess)
             {
                 return Ok(action.Result);
