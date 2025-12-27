@@ -1,4 +1,5 @@
 using Capa.Backend.Data;
+using Capa.Backend.Helpers;
 using Capa.Backend.Repositories.Implementations;
 using Capa.Backend.Repositories.Intefaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +17,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddScoped<IIARecommendationService, IARecommendationService>();
 
 builder.Services.AddScoped<ICarrerasRepository, CarrerasRepository>();
 builder.Services.AddScoped<IEstudiantesRepository, EstudiantesRepository>();
 builder.Services.AddScoped<IDocentesRepository, DocentesRepository>();
-//builder.Services.AddScoped<IDocentesRepository, DocentesRepository>();
+//builder.Services.AddScoped<IIARecommendationService, IARecommendationService>();
 
 var app = builder.Build();
 

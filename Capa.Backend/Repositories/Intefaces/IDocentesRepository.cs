@@ -9,5 +9,6 @@ namespace Capa.Backend.Repositories.Intefaces
         Task<ActionResponse<IEnumerable<Docente>>> GetAsync();
         Task<ActionResponse<IEnumerable<DocenteResponseDTO>>> GetNewAsync();
         Task<ActionResponse<Docente>> AddAsync(DocenteDTO docenteDTO);
+        Task<ActionResponse<IEnumerable<DocenteModelDTO>>> ConsultaAsync(int carreraId);
     }
 }

@@ -83,6 +83,50 @@ namespace Capa.Backend.Data
                       Especialista en análisis de costos, planificación estratégica y sistemas ERP.",
                     "Ing. Comercial");
 
+                await AddDocenteAsync(
+                    "33445566",
+                    "Ana",
+                    "Quispe Rojas",
+                    "anaq@yopmail.com",
+                    @"Ingeniera de Sistemas con especialización en ciberseguridad y seguridad informática.
+                      Experiencia en auditoría de sistemas, gestión de riesgos tecnológicos y protección de datos.
+                      Ha sido tutora en proyectos de seguridad de la información, análisis de vulnerabilidades
+                      y desarrollo de sistemas seguros para instituciones académicas y empresariales.",
+                    "Ing. Sistemas");
+
+                await AddDocenteAsync(
+                    "55667788",
+                    "Carlos",
+                    "Rivera Choque",
+                    "carlosr@yopmail.com",
+                    @"Ingeniero de Sistemas con experiencia en inteligencia artificial aplicada,
+                      visión por computadora y procesamiento de imágenes.
+                      Ha tutorizado proyectos de reconocimiento facial, detección de objetos
+                      y sistemas inteligentes para automatización de procesos.",
+                    "Ing. Sistemas");
+
+                await AddDocenteAsync(
+                    "77889900",
+                    "Verónica",
+                    "Salazar Pinto",
+                    "veronica@yopmail.com",
+                    @"Ingeniera de Sistemas con enfoque en ingeniería de software,
+                      calidad de sistemas y metodologías ágiles.
+                      Experiencia en dirección de proyectos, pruebas de software,
+                      gestión de requerimientos y arquitectura de aplicaciones empresariales.",
+                    "Ing. Sistemas");
+
+                await AddDocenteAsync(
+                    "99001122",
+                    "Jorge",
+                    "Medina Flores",
+                    "jorge@yopmail.com",
+                    @"Ingeniero de Sistemas con especialidad en ciencia de datos,
+                      big data y analítica avanzada.
+                      Ha desarrollado y tutorizado proyectos de análisis de grandes volúmenes de datos,
+                      sistemas de recomendación y modelos predictivos para toma de decisiones.",
+                    "Ing. Sistemas");
+
                 await _context.SaveChangesAsync();
             }
         }
@@ -93,7 +137,11 @@ namespace Capa.Backend.Data
             {
                 await AddEstudianteAsync("65652544", "Ever", "Muchairo Lazo", "muchairo@yopmail.com", "R298-4", "Ing. Sistemas");
                 await AddEstudianteAsync("11255712", "Waldo", "Saenz Pilco", "waldo@yopmail.com", "R299-2", "Ing. Sistemas");
-                await AddEstudianteAsync("22745225", "Milton", "Yujra Pally", "milton@yopmail.com", "R300-5", "Ing. Comercial");
+                await AddEstudianteAsync("45888544", "Felipe", "Montes Paz", "felipem@yopmail.com", "R300-1", "Ing. Sistemas");
+                await AddEstudianteAsync("20125485", "Pablo", "Quette Lara", "pablol@yopmail.com", "R300-2", "Ing. Sistemas");
+                await AddEstudianteAsync("10111213", "Jorge", "Mamanta Duri", "jorged@yopmail.com", "R300-3", "Ing. Sistemas");
+                await AddEstudianteAsync("20212223", "Mariela", "Daza Surita", "marielad@yopmail.com", "R300-4", "Ing. Sistemas");
+                await AddEstudianteAsync("22745225", "Milton", "Yujra Pally", "milton@yopmail.com", "R300-5", "Ing. Sistemas");
                 await AddEstudianteAsync("21874588", "Dario", "Miranda Lino", "dario@yopmail.com", "R450-1", "Ing. Comercial");
                 await _context.SaveChangesAsync();
             }
@@ -106,38 +154,78 @@ namespace Capa.Backend.Data
                 var estudiantes = await _context.Estudiantes.ToListAsync();
                 var docentes = await _context.Docentes.ToListAsync();
 
+                // Fernando - Sistemas académicos / IA
                 AddProyecto(
-                    estudiantes[0],
+                    estudiantes.First(e => e.Nombres == "Ever"),
                     docentes.First(d => d.Nombres == "Fernando"),
                     "Sistema de gestión académica con inteligencia artificial",
-                    @"Desarrollo de un sistema web que permita gestionar procesos académicos
-                    utilizando algoritmos de inteligencia artificial para análisis de rendimiento
-                    estudiantil, predicción de deserción y recomendación de tutorías.",
+                    @"Desarrollo de un sistema web para automatizar procesos académicos mediante
+                    algoritmos de inteligencia artificial, incluyendo análisis de rendimiento,
+                    predicción de deserción estudiantil y recomendación automática de tutorías.",
                     "2024");
 
+                // Lidia - Data Science / Machine Learning
                 AddProyecto(
-                    estudiantes[1],
+                    estudiantes.First(e => e.Nombres == "Waldo"),
                     docentes.First(d => d.Nombres == "Lidia"),
-                    "Plataforma de análisis predictivo para rendimiento estudiantil",
-                    @"Implementación de una plataforma que emplea técnicas de machine learning
-                    para analizar el desempeño de los estudiantes y predecir su rendimiento
-                    académico, proporcionando reportes y visualizaciones interactivas.",
+                    "Plataforma de análisis predictivo del rendimiento estudiantil",
+                    @"Implementación de una plataforma basada en machine learning que analice el
+                    comportamiento académico de los estudiantes y genere modelos predictivos
+                    para apoyar la toma de decisiones institucionales.",
                     "2024");
 
+                // Carlos - Visión por Computadora / IA
                 AddProyecto(
-                    estudiantes[2],
-                    docentes.First(d => d.Nombres == "Marcelo"),
-                    "Sistema de control de ventas e inventarios para PYMES",
-                    @"Desarrollo de un sistema empresarial para gestionar ventas, compras,
-                    inventarios y reportes financieros, orientado a pequeñas y medianas empresas.",
+                    estudiantes.First(e => e.Nombres == "Felipe"),
+                    docentes.First(d => d.Nombres == "Carlos"),
+                    "Sistema de reconocimiento facial para control de acceso universitario",
+                    @"Sistema inteligente que utiliza visión por computadora y redes neuronales
+                    para identificar personas y controlar el acceso a instalaciones académicas.",
+                    "2024");
+
+                // Jorge - Big Data / Ciencia de Datos
+                AddProyecto(
+                    estudiantes.First(e => e.Nombres == "Pablo"),
+                    docentes.First(d => d.Nombres == "Jorge"),
+                    "Sistema de análisis de grandes volúmenes de datos para toma de decisiones",
+                    @"Plataforma de big data orientada al procesamiento, análisis y visualización
+                    de información institucional para apoyar decisiones estratégicas.",
+                    "2024");
+
+                // Ana - Ciberseguridad
+                AddProyecto(
+                    estudiantes.First(e => e.Nombres == "Jorge"),
+                    docentes.First(d => d.Nombres == "Ana"),
+                    "Sistema de detección de vulnerabilidades en redes académicas",
+                    @"Desarrollo de una herramienta de seguridad informática para análisis de
+                    vulnerabilidades, monitoreo de redes y protección de datos institucionales.",
                     "2023");
 
+                // Marcos - Apps / Software Engineering
                 AddProyecto(
-                    estudiantes[3],
+                    estudiantes.First(e => e.Nombres == "Mariela"),
                     docentes.First(d => d.Nombres == "Marcos"),
-                    "Aplicación móvil para gestión de tareas colaborativas",
-                    @"Creación de una aplicación móvil multiplataforma que permita organizar tareas,
-                    asignar responsabilidades y mejorar la productividad de equipos de trabajo.",
+                    "Aplicación móvil para gestión de proyectos colaborativos",
+                    @"Aplicación multiplataforma orientada a mejorar la productividad de equipos
+                    mediante planificación, asignación de tareas y control de avances.",
+                    "2023");
+
+                // Verónica - Ingeniería de Software / Calidad
+                AddProyecto(
+                    estudiantes.First(e => e.Nombres == "Milton"),
+                    docentes.First(d => d.Nombres == "Verónica"),
+                    "Sistema de control de calidad de software basado en métricas",
+                    @"Sistema que permite evaluar la calidad del software mediante métricas,
+                    pruebas automatizadas y seguimiento de defectos en proyectos de desarrollo.",
+                    "2023");
+
+                // Marcelo - Sistemas empresariales
+                AddProyecto(
+                    estudiantes.First(e => e.Nombres == "Dario"),
+                    docentes.First(d => d.Nombres == "Marcelo"),
+                    "Sistema integrado de gestión empresarial para PYMES",
+                    @"Desarrollo de un sistema ERP para el control de ventas, inventarios,
+                    contabilidad y reportes financieros en pequeñas empresas.",
                     "2023");
 
                 await _context.SaveChangesAsync();

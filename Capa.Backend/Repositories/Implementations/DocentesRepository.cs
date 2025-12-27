@@ -66,6 +66,31 @@ namespace Capa.Backend.Repositories.Implementations
             }
         }
 
+        public async Task<ActionResponse<IEnumerable<DocenteModelDTO>>> ConsultaAsync(int carreraId)
+        {
+            var docentes = await _context.Docentes
+                .Where(c => c.CarreraId == carreraId)
+                .Select(d => new DocenteModelDTO
+                {
+                    NombreCompleto = $"{d.Nombres} {d.Apellidos}",
+                    ResumenPerfil = d.ResumenPerfil,
+
+                    Proyectos = d.Proyectos.Select(p => new ProyectoSimpleDTO
+                    {
+                        Id = p.Id,
+                        Titulo = p.Titulo,
+                        Gestion = p.Gestion
+                    }).ToList()
+                })
+                .ToListAsync();
+
+            return new ActionResponse<IEnumerable<DocenteModelDTO>>
+            {
+                WasSuccess = true,
+                Result = docentes
+            };
+        }
+
         public async Task<ActionResponse<IEnumerable<Docente>>> GetAsync()
         {
             var docentes = await _context.Docentes

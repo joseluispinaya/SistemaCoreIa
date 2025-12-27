@@ -16,7 +16,7 @@ namespace Capa.Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var action = await _estudiantesRepository.GetAsync();
+            var action = await _estudiantesRepository.GetNewAsync();
             if (action.WasSuccess)
             {
                 return Ok(action.Result);
